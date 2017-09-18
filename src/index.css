@@ -1,0 +1,104 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.container-fluid {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.center{
+  text-align: center;
+}
+
+.ToDoBox{
+  background-color: gray;
+  height: 80%;
+  margin-top: 5%;
+}
+
+#root{
+  height: 100%;
+}
+
+.height{
+  height: 100%;
+}
+
+.borderradius{
+  border-radius: 15px;
+}
+
+.font-size{
+  font-size: 4rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e5e9f2;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4{
+  font-size: 1.5rem;
+}
+h5{
+  font-size: 1.25rem;
+}
+
+h6{
+  font-size: 1rem;
+}
+
+
+#ToDoBox-header-row{
+
+}
+
+#ToDoBox-form-row{
+  height: 20%;
+  padding-bottom: 2%;
+}
+
+#ToDoBox-tasks-row{
+
+}
+
+#ToDoBox-footer-row{
+
+}
+
+.text-right{
+  text-align: right;
+}
+.task{
+  padding: 2% 8% 2% 8%;
+}
