@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './bootstrapattempt.css';
+import './uikit-3.0.0-beta.30/css/uikit.min.css'
 
 class ToDoBox extends React.Component{
   constructor(){
@@ -66,7 +67,7 @@ class ToDoForm extends React.Component{
         <div className='task-form-fields height font-size'>
           <input className ='col-xs-8 col-xs-offset-2 height borderradius' placeholder='Task:' ref={(input) => this._task_body = input} />
         </div>
-        <button> Submit</button>
+        <button className='uk-button uk-button-primary'> Submit</button>
       </form>
     );
   }
@@ -82,7 +83,7 @@ class ToDoTask extends React.Component {
     return(
       <div className ='task'>
         <hr />
-        <div className='text-right'>&#x2716;</div>
+        <button className='uk-button-small uk-button-danger'>&#x2716;</button>
         <p className='comment-header'> {this.props.author}</p>
         <p className='comment-body'>{this.props.body}</p>
         <p className='comment-footer'> comment footer text</p>
