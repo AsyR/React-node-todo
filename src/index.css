@@ -95,6 +95,9 @@ h6{
 #ToDoBox-footer-row{
 
 }
+button{
+  float: right;
+}
 
 .text-right{
   text-align: right;

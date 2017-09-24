@@ -2,18 +2,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './bootstrapattempt.css';
-import './uikit-3.0.0-beta.30/css/uikit.min.css'
+// import './bootstrapattempt.css';
+import './foundation-6.4.2-customny/css/foundation.min.css'
 
 class ToDoBox extends React.Component{
   constructor(){
     super();
     this.state = {
-      tasks: [{id: 1, author: 'RedX Tech', body:'great picture', key: 1},
-      {id: 2, author: 'hest', body:' excellent stuff!', key: 2}]
+      tasks: []
     }
     this.deleteTask = this.deleteTask.bind(this);
-
   }
   _getTasks() {
     return this.state.tasks.map((task) => {
@@ -26,21 +24,19 @@ class ToDoBox extends React.Component{
         );
       });
   }
-
-
   render() {
 
     const tasks = this._getTasks();
     return(
-      <div className='uk-width-1 uk-flex-center uk-flex'>
-      <div className='ToDoBox uk-grid borderradius uk-width-1-3 '>
-        <div id='ToDoBox-header-row' className='uk-width-1-1@s uk-flex-center uk-flex '>
-          <div className=" ">
-            <h1 className='title'> To Do Application </h1>
+      <div className='grid-x'>
+      <div className='ToDoBox borderradius small-offset-3 small-6 '>
+        <div id='ToDoBox-header-row' className=' '>
+          <div className="center ">
+            <h2 className='title'> To Do Application </h2>
             </div>
           </div>
           <div className='' id='ToDoBox-form-row'>
-            <ToDoForm addToDoTask={this._addToDoTask.bind(this)} />
+            <ToDoForm addToDoTask={this._addToDoTask.bind(this)} type='text'/>
             </div>
           <div className='row' id='ToDoBox-tasks-row'>
             <div className ='task-list'>
@@ -57,11 +53,9 @@ class ToDoBox extends React.Component{
       id: this.state.tasks.length +1,
       key: this.state.tasks.length +1,
       body
-
     };
     this.setState({ tasks: this.state.tasks.concat([todotask])});
   }
-
   deleteTask (task) {
     let tempStateTasks = []
     this.state.tasks.forEach((taskItem) => {
@@ -78,11 +72,12 @@ class ToDoBox extends React.Component{
 class ToDoForm extends React.Component{
   render(){
     return(
-      <form className="task-form height" onSubmit={this._taskSubmit.bind(this)}>
-        <div className='task-form-fields height font-size uk-grid uk-width-2-3'>
-          <input className =' uk-width-1 uk-flex uk-flex-middle height borderradius' placeholder='Task:' ref={(input) => this._task_body = input} />
+      <form className="task-form height grid-x" onSubmit={this._taskSubmit.bind(this)}>
+        <div className='task-form-fields height font-size small-10 small-offset-1'>
+          <input className =' height borderradius' placeholder='Task:' ref={(input) => this._task_body = input} type ='text' />
         </div>
-        <button className='uk-button uk-button-primary'> Submit</button>
+        <button className='button round expanded'> Submit</button>
+        {/* <a role="button expanded" aria-label="submit form" href="#" class="button">Submit</a> */}
       </form>
     );
   }
@@ -98,10 +93,10 @@ class ToDoTask extends React.Component {
     return(
       <div className ='task'>
         <hr />
-        <button className='uk-button-small uk-button-danger' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
+        <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
         <p className='comment-header'> {this.props.author}</p>
         <p className='comment-body'>{this.props.body}</p>
-        <p className='comment-footer'> comment footer text</p>
+        <p className='comment-footer'>{this.props.time}</p>
       </div>
 
     );
