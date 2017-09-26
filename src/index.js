@@ -89,6 +89,11 @@ class ToDoForm extends React.Component{
 }
 
 class ToDoTask extends React.Component {
+  constructor(){
+  super()
+  this.state = {date: new Date()};
+
+  }
   render(){
     return(
       <div className ='task'>
@@ -96,7 +101,7 @@ class ToDoTask extends React.Component {
         <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
         <p className='comment-header'> {this.props.author}</p>
         <p className='comment-body'>{this.props.body}</p>
-        <p className='comment-footer'>{this.props.time}</p>
+        <p className='comment-footer'>{this.state.date.toLocaleTimeString()}</p>
       </div>
 
     );
