@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import './bootstrapattempt.css';
 import './foundation-6.4.2-customny/css/foundation.min.css'
 
 class ToDoBox extends React.Component{
@@ -43,13 +42,23 @@ class ToDoBox extends React.Component{
               {tasks}
           </div>
         </div>
-        <div className='row' id ='ToDoBox-footer-row'></div>
+        <div className='row' id ='ToDoBox-footer-row'>
+          <div className=''>
+            <ul className='tabs data-tabs small-offset-3 small-6'>
+              <li className='tabs-title is-active'><a data-tabs-target="panel1" href="#panel1">Active</a></li>
+              <li className='tabs-title'><a data-tabs-target="panel2" href="#panel2">Deleted</a></li>
+              <li className='tabs-title'><a data-tabs-target="panel3" href="#panel3">All</a></li>
+            </ul>
+
+          </div>
+        </div>
       </div>
       </div>
     );
   }
   _addToDoTask(body){
     const todotask = {
+      completed: false,
       id: this.state.tasks.length +1,
       key: this.state.tasks.length +1,
       body
@@ -77,7 +86,6 @@ class ToDoForm extends React.Component{
           <input className =' height borderradius' placeholder='Task:' ref={(input) => this._task_body = input} type ='text' />
         </div>
         <button className='button round expanded'> Submit</button>
-        {/* <a role="button expanded" aria-label="submit form" href="#" class="button">Submit</a> */}
       </form>
     );
   }
@@ -87,28 +95,38 @@ class ToDoForm extends React.Component{
     this.props.addToDoTask(body.value);
   }
 }
+class ToDoList extends React.Component {
+
+}
+
 
 class ToDoTask extends React.Component {
   constructor(){
   super()
-  this.state = {date: new Date()};
+  this.handleCheckBox = this.handleCheckBox.bind(this)
+  this.state = {date: new Date(),
+  completed: false};
 
   }
   render(){
     return(
-      <div className ='task'>
+      <div className={this.state.completed ? "completed" : "" }>
         <hr />
-        <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
-        <p className='comment-header'> {this.props.author}</p>
-        <p className='comment-body'>{this.props.body}</p>
-        <p className='comment-footer'>{this.state.date.toLocaleTimeString()}</p>
+          <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
+          <input type="checkbox" className='toggle' onChange={this.handleCheckBox} checked={this.state.completed}/>
+          {console.log(this.state.completed)}
+          <p className='comment-header'> {this.props.author}</p>
+          <p className='comment-body'>{this.props.body}</p>
+          <p className='comment-footer'>{this.state.date.toLocaleTimeString()}</p>
       </div>
-
     );
   }
-
+  handleCheckBox(e) {
+  this.setState({
+    completed: e.target.checked
+  })
 }
-
+}
 ReactDOM.render(
   <ToDoBox />,
   document.getElementById('root')

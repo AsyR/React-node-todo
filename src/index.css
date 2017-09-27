@@ -104,4 +104,11 @@ button{
 }
 .task{
   padding: 2% 8% 2% 8%;
+  margin: 2% 8% 2% 8%;
+}
+.completed>p{
+  text-decoration: line-through;
+}
+.completed{
+  background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 }
