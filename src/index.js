@@ -8,7 +8,9 @@ class ToDoBox extends React.Component{
   constructor(){
     super();
     this.state = {
-      tasks: []
+      tasks: [],
+      filter: ''
+
     }
     this.deleteTask = this.deleteTask.bind(this);
   }
@@ -39,23 +41,37 @@ class ToDoBox extends React.Component{
             </div>
           <div className='row' id='ToDoBox-tasks-row'>
             <div className ='task-list'>
+              <ToDoList filter={this.state.filter} tasks={this.state.tasks}/>
               {tasks}
           </div>
         </div>
         <div className='row' id ='ToDoBox-footer-row'>
           <div className=''>
             <ul className='tabs data-tabs small-offset-3 small-6'>
-              <li className='tabs-title is-active'><a data-tabs-target="panel1" href="#panel1">Active</a></li>
-              <li className='tabs-title'><a data-tabs-target="panel2" href="#panel2">Deleted</a></li>
-              <li className='tabs-title'><a data-tabs-target="panel3" href="#panel3">All</a></li>
+              <li className=''><button onClick={this.clickAll.bind(this)}>All</button></li>
+              <li className=''><button onClick={this.clickActive.bind(this)}>Active</button></li>
+              <li className=''><button onClick={this.clickCompleted.bind(this)}>Completed</button></li>
             </ul>
-
+{/* <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}} */}
           </div>
         </div>
       </div>
       </div>
     );
   }
+  clickAll(){
+    this.setState({filter: 'all'});
+    console.log(this.state.filter);
+  }
+  clickActive(){
+    this.setState({filter: 'active'});
+    console.log(this.state.filter);
+  }
+  clickCompleted(){
+    this.setState({filter: 'completed'});
+    console.log(this.state.filter);
+  }
+
   _addToDoTask(body){
     const todotask = {
       completed: false,
@@ -96,7 +112,11 @@ class ToDoForm extends React.Component{
   }
 }
 class ToDoList extends React.Component {
-
+  render(){
+    return(
+        <div>{this.props.filter}</div>
+    );
+  }
 }
 
 
