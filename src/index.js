@@ -11,7 +11,6 @@ class ToDoBox extends React.Component{
     this.state = {
       tasks: [],
       filter: ''
-
     }
     this.deleteTask = this.deleteTask.bind(this);
     this.ccompleteTask = this.ccompleteTask.bind(this);
@@ -76,6 +75,7 @@ class ToDoBox extends React.Component{
   }
 
   _addToDoTask(body){
+
     const todotask = {
       completed: false,
       id: this.state.tasks.length +1,
@@ -83,6 +83,7 @@ class ToDoBox extends React.Component{
       body
     };
     this.setState({ tasks: this.state.tasks.concat([todotask])});
+    console.log(this.state.tasks)
   }
   deleteTask (task) {
     // let foundTask = _.findWhere(this.state.tasks, {id: 1});
@@ -99,12 +100,17 @@ class ToDoBox extends React.Component{
     })
   }
   ccompleteTask(id){
-   console.log(this.state.tasks);
+  console.log(this.state.tasks)
+   let tasks = this.state.tasks;
    let foundTask = _.findWhere(this.state.tasks, {id: id});
+   this.state.tasks.splice(_.indexOf(tasks, foundTask), 1);
    foundTask.completed = true;
+   this.state.tasks.push(foundTask);
+  //  let newarray = this.state.tasks.push(foundTask);
    this.setState({
-     tasks: this.state.tasks.push(foundTask)
+     tasks: this.state.tasks
    })
+   console.log(this.state.tasks)
   }
 }
 
