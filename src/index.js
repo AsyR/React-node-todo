@@ -2,7 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './foundation-6.4.2-customny/css/foundation.min.css'
+import './foundation-6.4.2-customny/css/foundation.min.css';
+import _ from 'underscore';
 
 class ToDoBox extends React.Component{
   constructor(){
@@ -13,6 +14,7 @@ class ToDoBox extends React.Component{
 
     }
     this.deleteTask = this.deleteTask.bind(this);
+    this.ccompleteTask = this.ccompleteTask.bind(this);
   }
   _getTasks() {
     return this.state.tasks.map((task) => {
@@ -20,6 +22,7 @@ class ToDoBox extends React.Component{
       <ToDoTask
         body={task.body}
         handleDelete={this.deleteTask}
+        completeTask={this.ccompleteTask}
         key={task.key}
         id={task.id}/>
         );
@@ -82,6 +85,9 @@ class ToDoBox extends React.Component{
     this.setState({ tasks: this.state.tasks.concat([todotask])});
   }
   deleteTask (task) {
+    // let foundTask = _.findWhere(this.state.tasks, {id: 1});
+    // foundTask.completed = true;
+    // console.log(foundTask);
     let tempStateTasks = []
     this.state.tasks.forEach((taskItem) => {
       if (taskItem.id !== task) {
@@ -91,6 +97,14 @@ class ToDoBox extends React.Component{
     this.setState({
       tasks: tempStateTasks
     })
+  }
+  ccompleteTask(id){
+   console.log(this.state.tasks);
+   let foundTask = _.findWhere(this.state.tasks, {id: id});
+   foundTask.completed = true;
+   this.setState({
+     tasks: this.state.tasks.push(foundTask)
+   })
   }
 }
 
@@ -112,12 +126,17 @@ class ToDoForm extends React.Component{
   }
 }
 class ToDoList extends React.Component {
+  // _.map(this.props.tasks, filterTasks(arrayElement) { return array result })
   render(){
-    return(
-        <div>{this.props.filter}</div>
-    );
+     return(<div>hej</div>);
+
   }
 }
+// filterTasks(arrayelem){
+//   if arrayelem.state.completed == this.props.filter{
+//     return true;
+//   }
+// }
 
 
 class ToDoTask extends React.Component {
@@ -142,9 +161,7 @@ class ToDoTask extends React.Component {
     );
   }
   handleCheckBox(e) {
-  this.setState({
-    completed: e.target.checked
-  })
+  this.props.completeTask(this.props.id);
 }
 }
 ReactDOM.render(
