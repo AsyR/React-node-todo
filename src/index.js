@@ -43,8 +43,7 @@ class ToDoBox extends React.Component{
             </div>
           <div className='row' id='ToDoBox-tasks-row'>
             <div className ='task-list'>
-              <ToDoList filter={this.state.filter} tasks={this.state.tasks}/>
-              {tasks}
+              <ToDoList filter={this.state.filter} tasks={this.state.tasks} completefunction={this.ccompleteTask} deletefunction={this.deleteTask}/>
           </div>
         </div>
         <div className='row' id ='ToDoBox-footer-row'>
@@ -54,7 +53,6 @@ class ToDoBox extends React.Component{
               <li className=''><button onClick={this.clickActive.bind(this)}>Active</button></li>
               <li className=''><button onClick={this.clickCompleted.bind(this)}>Completed</button></li>
             </ul>
-{/* <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}} */}
           </div>
         </div>
       </div>
@@ -83,12 +81,8 @@ class ToDoBox extends React.Component{
       body
     };
     this.setState({ tasks: this.state.tasks.concat([todotask])});
-    console.log(this.state.tasks)
   }
   deleteTask (task) {
-    // let foundTask = _.findWhere(this.state.tasks, {id: 1});
-    // foundTask.completed = true;
-    // console.log(foundTask);
     let tempStateTasks = []
     this.state.tasks.forEach((taskItem) => {
       if (taskItem.id !== task) {
@@ -100,17 +94,20 @@ class ToDoBox extends React.Component{
     })
   }
   ccompleteTask(id){
-  console.log(this.state.tasks)
    let tasks = this.state.tasks;
    let foundTask = _.findWhere(this.state.tasks, {id: id});
    this.state.tasks.splice(_.indexOf(tasks, foundTask), 1);
-   foundTask.completed = true;
+   if (foundTask.completed == false) {
+     foundTask.completed = true;
+   }
+   else {
+     foundTask.completed = false;
+   }
    this.state.tasks.push(foundTask);
   //  let newarray = this.state.tasks.push(foundTask);
    this.setState({
      tasks: this.state.tasks
    })
-   console.log(this.state.tasks)
   }
 }
 
@@ -132,9 +129,28 @@ class ToDoForm extends React.Component{
   }
 }
 class ToDoList extends React.Component {
-  // _.map(this.props.tasks, filterTasks(arrayElement) { return array result })
+  constructor(){
+    super();
+  }
   render(){
-     return(<div>hej</div>);
+    let results = this.props.tasks;
+    // console.log(this.props.filter !== '');
+    if(this.props.filter !== ''){
+      if (this.props.filter == 'completed'){
+       results = this.props.tasks.filter( item => item.completed === true);
+      }
+      else if (this.props.filter == 'active'){
+        results = this.props.tasks.filter( item => item.completed === false);
+      }
+    }
+    console.log(results)
+     return(<div>{results.map((task) => <ToDoTask
+       body={task.body}
+       completed={task.completed}
+       completeTask={this.props.completefunction}
+       handleDelete={this.props.deletefunction}
+       key={task.key}
+       id={task.id}/>)}</div>);
 
   }
 }
@@ -159,7 +175,6 @@ class ToDoTask extends React.Component {
         <hr />
           <button className='button alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
           <input type="checkbox" className='toggle' onChange={this.handleCheckBox} checked={this.state.completed}/>
-          {console.log(this.state.completed)}
           <p className='comment-header'> {this.props.author}</p>
           <p className='comment-body'>{this.props.body}</p>
           <p className='comment-footer'>{this.state.date.toLocaleTimeString()}</p>
