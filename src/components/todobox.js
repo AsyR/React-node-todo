@@ -4,9 +4,6 @@ import ToDoList from './todolist';
 import ToDoForm from './todoform';
 import ToDoTask from './todotask';
 
-// import './index.css';
-// import './foundation-6.4.2-customny/css/foundation.min.css';
-
 export default class ToDoBox extends React.Component{
   constructor(){
     super();

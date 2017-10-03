@@ -1,7 +1,4 @@
-import _ from 'underscore';
 import React from 'react';
-// import './index.css';
-// import './foundation-6.4.2-customny/css/foundation.min.css';
 export default class ToDoForm extends React.Component{
   render(){
     return(

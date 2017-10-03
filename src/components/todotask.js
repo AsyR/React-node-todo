@@ -1,6 +1,4 @@
-import _ from 'underscore';
 import React from 'react';
-
 export default class ToDoTask extends React.Component {
   constructor(){
   super()

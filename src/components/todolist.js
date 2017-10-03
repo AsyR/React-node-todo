@@ -1,8 +1,5 @@
-import _ from 'underscore';
 import React from 'react';
 import ToDoTask from './todotask';
-// import './index.css';
-// import './foundation-6.4.2-customny/css/foundation.min.css';
 export default class ToDoList extends React.Component {
   render(){
     let results = this.props.tasks;
