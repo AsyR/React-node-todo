@@ -18,12 +18,14 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
 body {
   height: 100%;
   width: 100%;
+  background-color: #f5f5f5!important;
 }
 
 html {
   height: 100%;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+
 }
 
 .center{
@@ -31,9 +33,10 @@ html {
 }
 
 .ToDoBox{
-  background-color: gray;
+  margin-top: 3%;
   height: 80%;
-  margin-top: 5%;
+  background-color: white;
+  box-shadow: 3px 3px 5px 6px #ccc
 }
 
 #root{
@@ -85,7 +88,6 @@ h6{
 
 #ToDoBox-form-row{
   height: 20%;
-  padding-bottom: 2%;
 }
 
 #ToDoBox-tasks-row{
@@ -102,6 +104,10 @@ button{
 .text-right{
   text-align: right;
 }
+
+.title{
+  color: #c60f13;
+}
 .task{
   padding: 2% 8% 2% 8%;
   margin: 2% 8% 2% 8%;
@@ -111,4 +117,18 @@ button{
 }
 .completed{
   background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+
+hr{
+  padding: 0px;
+  margin: 0px;
+}
+
+.white{
+  color:white;
+}
+
+.min-button-width{
+  min-width: 20%;
 }
