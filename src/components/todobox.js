@@ -4,6 +4,9 @@ import ToDoList from './todolist';
 import ToDoForm from './todoform';
 import ToDoTask from './todotask';
 
+// import './index.css';
+// import './foundation-6.4.2-customny/css/foundation.min.css';
+
 export default class ToDoBox extends React.Component{
   constructor(){
     super();
@@ -45,10 +48,10 @@ export default class ToDoBox extends React.Component{
           </div>
         </div>
         <div className='row' id ='ToDoBox-footer-row'>
-          <div className='grid-x small-8'>
-            <button className='button hollow small-3  medium-2 medium-offset-1 ' onClick={this.clickAll.bind(this)}>All</button>
-            <button className='button hollow small-3  medium-2 medium-offset-2 ' onClick={this.clickCompleted.bind(this)}>Completed</button>
-            <button className='button hollow small-3  medium-2 medium-offset-2 ' onClick={this.clickActive.bind(this)}>Active</button>
+          <div className='grid-x small-12 medium-8'>
+            <button className='button hollow small-4  medium-2 medium-offset-1 ' onClick={this.clickAll.bind(this)}>All</button>
+            <button className='button hollow small-4  medium-2 medium-offset-2 ' onClick={this.clickCompleted.bind(this)}>Completed</button>
+            <button className='button hollow small-4  medium-2 medium-offset-2 ' onClick={this.clickActive.bind(this)}>Active</button>
           </div>
         </div>
       </div>
