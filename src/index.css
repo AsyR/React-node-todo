@@ -1,3 +1,4 @@
+@import "../node_modules/font-awesome/css/font-awesome.css";
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -27,11 +28,27 @@ html {
   font-family: 'Open Sans', sans-serif;
 
 }
+input[type=checkbox] { display: none; } /* to hide the checkbox itself */
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+}
 
+input[type=checkbox] + label:before { content: "\f096"; color: #c60f13; font-size: 30px;line-height: 0;} /* unchecked icon */
+input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+input[type=checkbox]:checked + label:before { content: "\f046"; color: #5da423; font-size: 30px; line-height: 0;} /* checked icon */
+input[type=checkbox]:checked + label:before { letter-spacing: 2px; } /* allow space for check mark */
+label{
+  margin-left: 0rem!important;
+  margin-top: 0.4rem;
+  line-height: 0;
+}
 
 .center{
   text-align: center;
 }
+
 
 .ToDoBox{
   margin-top: 3%;

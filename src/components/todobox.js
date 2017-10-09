@@ -94,14 +94,15 @@ export default class ToDoBox extends React.Component{
   ccompleteTask(id){
    let tasks = this.state.tasks;
    let foundTask = _.findWhere(this.state.tasks, {id: id});
-   this.state.tasks.splice(_.indexOf(tasks, foundTask), 1);
+  //  let index = _.indexOf(tasks, foundTask);
+  //  this.state.tasks.splice(_.indexOf(tasks, foundTask), 1);
    if (foundTask.completed === false) {
      foundTask.completed = true;
    }
    else {
      foundTask.completed = false;
    }
-   this.state.tasks.push(foundTask);
+   _.extend(_.findWhere(tasks, { id: id}), foundTask);
    this.setState({
      tasks: this.state.tasks
    })
