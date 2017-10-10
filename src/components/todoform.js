@@ -14,5 +14,6 @@ export default class ToDoForm extends React.Component{
     event.preventDefault();
     let body = this._task_body;
     this.props.addToDoTask(body.value);
+    this._task_body.value = '';
   }
 }

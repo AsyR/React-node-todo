@@ -21,7 +21,6 @@ export default class ToDoTask extends React.Component {
     );
   }
   handleCheckBox(e) {
-  console.log(this);
   this.props.completeTask(this.props.id);
-}
+  }
 }
