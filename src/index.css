@@ -130,7 +130,7 @@ button{
   padding: 2% 8% 2% 8%;
   margin: 2% 8% 2% 8%;
 }
-.completed>p{
+.completed>p, .completed>h4{
   text-decoration: line-through;
 }
 .completed{

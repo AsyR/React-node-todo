@@ -104,7 +104,7 @@ export default class ToDoBox extends React.Component{
    }
    _.extend(_.findWhere(tasks, { id: id}), foundTask);
    this.setState({
-     tasks: this.state.tasks
+     tasks: tasks
    })
   }
 }

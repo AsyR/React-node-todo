@@ -15,8 +15,7 @@ export default class ToDoTask extends React.Component {
           <button className='button hollow alert right' onClick={() => {this.props.handleDelete(this.props.id)}}>&#x2716;</button>
             <input type="checkbox" className='toggle' onChange={this.handleCheckBox} checked={this.props.completed} id={'test' + this.props.id}/>
             <label htmlFor={'test' + this.props.id}></label>
-          <p className='comment-header'> {this.props.author}</p>
-          <p className='comment-body'>{this.props.body}</p>
+          <h4 className='comment-body'>{this.props.body}</h4>
           <p className='comment-footer'>{this.state.date.toLocaleTimeString()}</p>
       </div>
     );
