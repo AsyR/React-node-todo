@@ -11,7 +11,7 @@ export default class ToDoTask extends React.Component {
     return (
       <div className={this.props.completed
         ? "completed"
-        : ""} id='single-task'>
+        : ""}>
         <hr/>
         <button className='button hollow alert float-right' onClick={() => {
           this.props.handleDelete(this.props.id)
@@ -23,7 +23,7 @@ export default class ToDoTask extends React.Component {
       </div>
     );
   }
-  handleCheckBox(e) {
+  handleCheckBox() {
     this.props.completeTask(this.props.id);
   }
 }
