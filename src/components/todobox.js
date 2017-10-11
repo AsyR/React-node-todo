@@ -47,11 +47,11 @@ export default class ToDoBox extends React.Component{
               <hr />
           </div>
         </div>
-        <div className='row' id ='ToDoBox-footer-row'>
-          <div className='grid-x small-12 medium-8'>
-            <button className='button hollow small-4  medium-2 medium-offset-1 ' onClick={this.clickAll.bind(this)}>All</button>
-            <button className='button hollow small-4  medium-2 medium-offset-2 ' onClick={this.clickCompleted.bind(this)}>Completed</button>
-            <button className='button hollow small-4  medium-2 medium-offset-2 ' onClick={this.clickActive.bind(this)}>Active</button>
+        <div className='row grid-x' id ='ToDoBox-footer-row'>
+          <div className='grid-x small-10 small-offset-1  button-group expanded' >
+            <button className='button hollow' onClick={this.clickAll.bind(this)}>All</button>
+            <button className='button hollow' onClick={this.clickCompleted.bind(this)}>Completed</button>
+            <button className='button hollow' onClick={this.clickActive.bind(this)}>Active</button>
           </div>
         </div>
       </div>
