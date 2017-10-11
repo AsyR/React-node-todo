@@ -1,19 +1,18 @@
 import React from 'react';
-export default class ToDoForm extends React.Component{
-  render(){
-    return(
-      <form className="task-form height grid-x" onSubmit={this._taskSubmit.bind(this)}>
-        <div className='task-form-fields height font-size small-10 small-offset-1'>
-          <input className =' height borderradius' placeholder='Task:' ref={(input) => this._task_body = input} type ='text' required />
-            <button className='hollow button round success min-button-width'> Submit</button>
+export default class ToDoForm extends React.Component {
+  render() {
+    return (
+      <form className="grid-x" onSubmit={this.taskSubmit.bind(this)}>
+        <div className='small-10 small-offset-1'>
+          <input placeholder='Task:' ref={(input) => this.taskBody = input} type='text' required/>
+          <button className='hollow button round success min-button-width float-right'>Submit</button>
         </div>
       </form>
     );
   }
-  _taskSubmit(event) {
+  taskSubmit(event) {
     event.preventDefault();
-    let body = this._task_body;
-    this.props.addToDoTask(body.value);
-    this._task_body.value = '';
+    this.props.addToDoTask(this.taskBody.value);
+    this.taskBody.value = '';
   }
 }

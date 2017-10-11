@@ -1,110 +1,105 @@
-import _ from 'underscore';
+// import _ from 'underscore';
 import React from 'react';
 import ToDoList from './todolist';
 import ToDoForm from './todoform';
 import ToDoTask from './todotask';
 
-// import './index.css';
-// import './foundation-6.4.2-customny/css/foundation.min.css';
-
-export default class ToDoBox extends React.Component{
-  constructor(){
+export default class ToDoBox extends React.Component {
+  constructor() {
     super();
     this.state = {
       tasks: [],
       filter: ''
     }
     this.deleteTask = this.deleteTask.bind(this);
-    this.ccompleteTask = this.ccompleteTask.bind(this);
+    this.handleCompleteTaskToggle = this.handleCompleteTaskToggle.bind(this);
   }
   _getTasks() {
     return this.state.tasks.map((task) => {
-      return (
-      <ToDoTask
-        body={task.body}
-        handleDelete={this.deleteTask}
-        completeTask={this.ccompleteTask}
-        key={task.key}
-        id={task.id}/>
-        );
-      });
+      return (<ToDoTask body={task.body} handleDelete={this.deleteTask} completeTask={this.handleCompleteTaskToggle} key={task.key} id={task.id}/>);
+    });
   }
   render() {
-    return(
+    return (
       <div className='grid-x'>
-      <div className='ToDoBox borderradius small-12 medium-offset-3 medium-6 '>
-        <div id='ToDoBox-header-row' className=' '>
-          <div className="center ">
-            <h1 className='title'> Todos </h1>
+        <div className='todobox borderradius small-12 medium-offset-3 medium-6'>
+            <div className='center'>
+              <h1 className='foundation-red'>
+                Todos
+              </h1>
+            </div>
+          <div>
+            <ToDoForm addToDoTask={this.addToDoTask.bind(this)} type='text'/>
+          </div>
+          <div className='row grid-x'>
+            <div className='task-list small-10 small-offset-1'>
+              <ToDoList filter={this.state.filter} tasks={this.state.tasks} completefunction={this.handleCompleteTaskToggle} deletefunction={this.deleteTask}/>
+              <hr/>
             </div>
           </div>
-          <div className='' id='ToDoBox-form-row'>
-            <ToDoForm addToDoTask={this._addToDoTask.bind(this)} type='text'/>
+          <div className='row grid-x'>
+            <div className='grid-x small-10 small-offset-1 button-group expanded'>
+              <button className='button hollow' onClick={this.clickAll.bind(this)}>All</button>
+              <button className='button hollow' onClick={this.clickCompleted.bind(this)}>Completed</button>
+              <button className='button hollow' onClick={this.clickActive.bind(this)}>Active</button>
             </div>
-          <div className='row grid-x' id='ToDoBox-tasks-row'>
-            <div className ='task-list small-10 small-offset-1'>
-              <ToDoList filter={this.state.filter} tasks={this.state.tasks} completefunction={this.ccompleteTask} deletefunction={this.deleteTask}/>
-              <hr />
           </div>
         </div>
-        <div className='row grid-x' id ='ToDoBox-footer-row'>
-          <div className='grid-x small-10 small-offset-1  button-group expanded' >
-            <button className='button hollow' onClick={this.clickAll.bind(this)}>All</button>
-            <button className='button hollow' onClick={this.clickCompleted.bind(this)}>Completed</button>
-            <button className='button hollow' onClick={this.clickActive.bind(this)}>Active</button>
-          </div>
-        </div>
-      </div>
       </div>
     );
   }
-  clickAll(){
+  clickAll() {
     this.setState({filter: 'all'});
     console.log(this.state.filter);
   }
-  clickActive(){
+  clickActive() {
     this.setState({filter: 'active'});
     console.log(this.state.filter);
   }
-  clickCompleted(){
+  clickCompleted() {
     this.setState({filter: 'completed'});
     console.log(this.state.filter);
   }
 
-  _addToDoTask(body){
+  addToDoTask(body) {
     const todotask = {
       completed: false,
-      id: this.state.tasks.length +1,
-      key: this.state.tasks.length +1,
+      id: this.state.tasks.length + 1,
+      key: this.state.tasks.length + 1,
       body
     };
-    this.setState({ tasks: this.state.tasks.concat([todotask])});
+    this.setState({
+      tasks: this.state.tasks.concat(todotask)
+    });
   }
-  deleteTask (task) {
+  deleteTask(task) {
     let tempStateTasks = []
     this.state.tasks.forEach((taskItem) => {
       if (taskItem.id !== task) {
         tempStateTasks.push(taskItem)
       }
     })
-    this.setState({
-      tasks: tempStateTasks
-    })
+    this.setState({tasks: tempStateTasks})
   }
-  ccompleteTask(id){
-   let tasks = this.state.tasks;
-   let foundTask = _.findWhere(this.state.tasks, {id: id});
-  //  let index = _.indexOf(tasks, foundTask);
-  //  this.state.tasks.splice(_.indexOf(tasks, foundTask), 1);
-   if (foundTask.completed === false) {
-     foundTask.completed = true;
-   }
-   else {
-     foundTask.completed = false;
-   }
-   _.extend(_.findWhere(tasks, { id: id}), foundTask);
-   this.setState({
-     tasks: tasks
-   })
+  handleCompleteTaskToggle(id) {
+    let tasks = this.state.tasks;
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].id === id && tasks[i].completed === false) {
+        tasks[i].completed = true;
+      } else if (tasks[i].id === id && tasks[i].completed === true) {
+        tasks[i].completed = false;
+      }
+    }
+
+    //  let foundTask = _.findWhere(this.state.tasks, {id: id});
+    //  if (foundTask.completed === false) {
+    //    foundTask.completed = true;
+    //  }
+    //  else {
+    //    foundTask.completed = false;
+    //  }
+    //  _.extend(_.findWhere(tasks, { id: id}), foundTask);
+
+    this.setState({tasks: tasks})
   }
 }

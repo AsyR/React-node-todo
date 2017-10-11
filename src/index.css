@@ -12,10 +12,6 @@ html, body, div, span, applet, object, iframe, blockquote, pre, a, abbr, acronym
   vertical-align: baseline;
 }
 
-.container-fluid {
-  height: 100%;
-}
-
 body {
   height: 100%;
   width: 100%;
@@ -28,7 +24,37 @@ html {
   font-family: 'Open Sans', sans-serif;
 
 }
-input[type=checkbox] { display: none; } /* to hide the checkbox itself */
+
+.center{
+  text-align: center;
+}
+
+.todobox{
+  margin-top: 3%;
+  height: 80%;
+  background-color: white;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  border-radius: 15px;
+}
+
+.float-right{
+  float: right;
+}
+.foundation-red{
+  color: #c60f13;
+}
+.task{
+  padding: 2% 8% 2% 8%;
+  margin: 2% 8% 2% 8%;
+}
+.completed>p, .completed>h4{
+  text-decoration: line-through;
+}
+.min-button-width{
+  min-width: 20%;
+}
+
+input[type=checkbox] { display: none; }
 input[type=checkbox] + label:before {
   font-family: FontAwesome;
   display: inline-block;
@@ -39,108 +65,8 @@ input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between c
 
 input[type=checkbox]:checked + label:before { content: "\f046"; color: #5da423; font-size: 30px; line-height: 0;} /* checked icon */
 input[type=checkbox]:checked + label:before { letter-spacing: 2px; } /* allow space for check mark */
-label{
+.checkbox-label{
   margin-left: 0rem!important;
-  margin-top: 0.4rem;
+  padding-top: 0.4rem;
   line-height: 0;
-}
-
-.center{
-  text-align: center;
-}
-
-
-.ToDoBox{
-  margin-top: 3%;
-  height: 80%;
-  background-color: white;
-  box-shadow: 3px 3px 5px 6px #ccc
-}
-
-#root{
-  height: 100%;
-}
-
-.height{
-  height: 100%;
-}
-
-.borderradius{
-  border-radius: 15px;
-}
-
-.font-size{
-  font-size: 4rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #e5e9f2;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.75rem;
-}
-
-h4{
-  font-size: 1.5rem;
-}
-h5{
-  font-size: 1.25rem;
-}
-
-h6{
-  font-size: 1rem;
-}
-
-
-#ToDoBox-header-row{
-
-}
-
-#ToDoBox-form-row{
-  height: 20%;
-}
-
-#ToDoBox-tasks-row{
-
-}
-
-#ToDoBox-footer-row{
-
-}
-button{
-  float: right;
-}
-
-.text-right{
-  text-align: right;
-}
-
-.title{
-  color: #c60f13;
-}
-.task{
-  padding: 2% 8% 2% 8%;
-  margin: 2% 8% 2% 8%;
-}
-.completed>p, .completed>h4{
-  text-decoration: line-through;
-}
-.completed{
-  background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-}
-
-.white{
-  color:white;
-}
-
-.min-button-width{
-  min-width: 20%;
 }
